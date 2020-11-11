@@ -1,0 +1,41 @@
+table {
+  max-width: 800px;
+  table-layout: fixed !important;
+  width: 100%;
+  overflow-y: scroll;
+  height: 300px;
+  display: block;
+  margin: 0 auto;
+  border: 3px solid rgb(42, 33, 63);
+}
+table th {
+  position: sticky;
+  top: -1px;
+  z-index: 5;
+}
+.table td {
+  width: 800px;
+}
+.heading {
+  text-align: center;
+  margin-bottom: 15px;
+}
+.icon-sorting {
+  margin-left: 10px;
+  cursor: pointer;
+}
+#options:focus option:first-of-type {
+  display: none;
+}
+/* .search {
+  margin-left: 30%;
+}
+*/
+button {
+  margin-top: 31px;
+  border-radius: 5px;
+}
+
+.container {
+  width: 800px;
+}

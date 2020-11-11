@@ -1,0 +1,84 @@
+<div class="heading">
+  <h2>Просмотр театров</h2>
+</div>
+<div class="operations">
+  <div class="container d-flex">
+    <div class="row d-flex justify-content-between">
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <div class="form-group">
+          <label for="operations">Выбрать тип театра</label>
+          <select
+            [(ngModel)]="selectedType"
+            (change)="onChangeType()"
+            class="form-control"
+            name="operations"
+            id="options"
+          >
+            <option>Выберите тип театра</option>
+            <option *ngFor="let r of range" value="{{ r }}">
+              {{ getType(r) }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <button (click)="onClearClick()" type="button" class="btn btn-danger">
+          Сбросить
+        </button>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 search">
+        <div class="form-group">
+          <label for="theaterName">Поиск</label>
+          <input
+            (input)="onTheaterNameKeyUp($event.target.value)"
+            type="text"
+            class="form-control"
+            name="theaterName"
+            aria-describedby="helpId"
+            [(ngModel)]="filterValue"
+          />
+          <small id="helpId" class="form-text text-muted"
+            >Введите название театра</small
+          >
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <button (click)="onFilterClick()" class="btn btn-success">
+          Отфильтровать
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<table class="table">
+  <thead>
+    <tr class="table-secondary">
+      <th>
+        Название Театра
+        <span class="icon-sorting" (click)="onIconClick()"
+          ><i
+            class="fas"
+            [class.fa-sort-alpha-down]="isAscSort"
+            [class.fa-sort-alpha-up]="!isAscSort"
+          ></i
+        ></span>
+      </th>
+      <th>Тип театра</th>
+      <th>Адрес</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      #row
+      *ngFor="let theater of theaters"
+      [class.table-warning]="isMatching(theater.id) && isSearching"
+    >
+      <td>{{ theater?.name }}</td>
+      <td>{{ getType(theater?.theaterType) }}</td>
+      <td>
+        {{ theater?.address?.streetName }} {{ theater?.address?.houseNumber }}
+      </td>
+    </tr>
+  </tbody>
+</table>

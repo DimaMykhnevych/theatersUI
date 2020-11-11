@@ -1,0 +1,105 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <a class="navbar-brand" href="#">Театры города</a>
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarColor01"
+    aria-controls="navbarColor01"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarColor01">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item" routerLinkActive="active current">
+        <a class="nav-link" routerLink="/home"
+          >Главная
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item dropdown" routerLinkActive="active current">
+        <a
+          class="nav-link dropdown-toggle"
+          data-toggle="dropdown"
+          href="#"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >Театры</a
+        >
+        <div class="dropdown-menu">
+          <a class="dropdown-item" routerLink="/theaters"
+            >Просмотреть список театров</a
+          >
+          <a class="dropdown-item" href="#">Добавить театр</a>
+          <a class="dropdown-item" href="#">Изменить театр</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item delete" href="#">Удалить театр</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          data-toggle="dropdown"
+          href="#"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >Представления</a
+        >
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Просмотреть список представлений</a>
+          <a class="dropdown-item" href="#">Добавить представление</a>
+          <a class="dropdown-item" href="#">Изменить представление</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item delete" href="#">Удалить представление</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          data-toggle="dropdown"
+          href="#"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >Пользователи</a
+        >
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Просмотреть список пользователей</a>
+          <a class="dropdown-item" href="#">Добавить пользователя</a>
+          <a class="dropdown-item" href="#">Изменить пользователя</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item delete" href="#">Удалить пользователя</a>
+        </div>
+      </li>
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          data-toggle="dropdown"
+          href="#"
+          role="button"
+          aria-haspopup="true"
+          aria-expanded="false"
+          >Заказы</a
+        >
+        <div class="dropdown-menu">
+          <a class="dropdown-item" href="#">Просмотреть список заказов</a>
+          <a class="dropdown-item" href="#">Добавить заказ</a>
+          <a class="dropdown-item" href="#">Изменить заказ</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item delete" href="#">Удалить заказ</a>
+        </div>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="text" placeholder="Search" />
+      <button class="btn btn-secondary my-2 my-sm-0" type="submit">
+        Search
+      </button>
+    </form>
+  </div>
+</nav>
