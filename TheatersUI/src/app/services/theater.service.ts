@@ -10,7 +10,7 @@ import { AppSettings } from '../settings/settings';
   providedIn: 'root',
 })
 export class TheaterService {
-  private baseString = AppSettings.apiHost;
+  private apiHost = AppSettings.apiHost;
   constructor(private http: HttpClient) {}
 
   public getTheaters(getParams: IGetTheaterParams): Observable<ITheater[]> {
@@ -18,6 +18,18 @@ export class TheaterService {
       getParams
     );
 
-    return this.http.get<ITheater[]>(`${this.baseString}/theater`, { params });
+    return this.http.get<ITheater[]>(`${this.apiHost}/theater`, { params });
+  }
+
+  public getTheaterById(id: number): Observable<ITheater> {
+    return this.http.get<ITheater>(`${this.apiHost}/theater/${id}`);
+  }
+
+  public addTheaters(theater: ITheater): Observable<ITheater> {
+    return this.http.post<ITheater>(`${this.apiHost}/theater`, theater);
+  }
+
+  public deleteTheater(id: number): Observable<boolean> {
+    return this.http.delete<boolean>(`${this.apiHost}/theater/${id}`);
   }
 }

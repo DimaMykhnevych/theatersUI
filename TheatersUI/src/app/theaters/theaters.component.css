@@ -1,5 +1,5 @@
 table {
-  max-width: 800px;
+  max-width: 900px;
   table-layout: fixed !important;
   width: 100%;
   overflow-y: scroll;
@@ -14,7 +14,11 @@ table th {
   z-index: 5;
 }
 .table td {
-  width: 800px;
+  width: 900px;
+  cursor: pointer;
+}
+.table tr:hover {
+  background-color: rgb(43, 47, 61);
 }
 .heading {
   text-align: center;
@@ -39,3 +43,6 @@ button {
 .container {
   width: 800px;
 }
+/* .delete {
+  margin: 0px 0px 0px 60px;
+} */

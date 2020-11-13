@@ -4,6 +4,9 @@ import { TheaterTypeMapper } from '../mappers/theater-type.mapper';
 import { TheaterTypes } from '../enums/theaterTypes.enum';
 import { ITheater } from '../models/theater';
 import { IGetTheaterParams } from '../models/theaterParams';
+import { filter } from 'rxjs/operators';
+import { Router } from '@angular/router';
+import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-theaters',
@@ -20,7 +23,7 @@ export class TheatersComponent implements OnInit {
   public searchResult: ITheater[] = [];
   public filterValue;
   public range = [...Array(13).keys()];
-  constructor(private service: TheaterService) {}
+  constructor(private service: TheaterService, private router: Router) {}
 
   public ngOnInit(): void {
     this._loadTheaters({});
@@ -33,15 +36,27 @@ export class TheatersComponent implements OnInit {
     return false;
   }
 
+  public onRowClick(theater): void {
+    this.router.navigate(['/addTheaters'], {
+      queryParams: {
+        theater: theater.id,
+      },
+    });
+  }
+
+  public onDeleteBtnClick(theaterId): void {
+    this.service
+      .deleteTheater(theaterId)
+      .pipe(filter(Boolean))
+      .subscribe((response) => {
+        this.updateRequest();
+      });
+  }
+
   public onIconClick(): void {
     this.isAscSort = !this.isAscSort;
     this.fieldToSort = 'name';
-    this._loadTheaters({
-      name: this.searchValue,
-      descending: !this.isAscSort,
-      fieldToSort: this.fieldToSort,
-      type: this.selectedType,
-    });
+    this.updateRequest();
   }
 
   public getType(theterType: TheaterTypes): string {
@@ -59,12 +74,7 @@ export class TheatersComponent implements OnInit {
 
   public onChangeType(): void {
     this.isSearching = false;
-    this._loadTheaters({
-      name: this.searchValue,
-      descending: !this.isAscSort,
-      fieldToSort: this.fieldToSort,
-      type: this.selectedType,
-    });
+    this.updateRequest();
   }
 
   public onTheaterNameKeyUp(searchValue: string): void {
@@ -73,12 +83,7 @@ export class TheatersComponent implements OnInit {
     if (searchValue === '') {
       this.isSearching = false;
     }
-    this._loadTheaters({
-      name: this.searchValue,
-      descending: !this.isAscSort,
-      fieldToSort: this.fieldToSort,
-      type: this.selectedType,
-    });
+    this.updateRequest();
   }
 
   public onFilterClick(): void {
@@ -92,6 +97,10 @@ export class TheatersComponent implements OnInit {
     this.isSearching = false;
     this.searchValue = null;
     this.filterValue = '';
+    this.updateRequest();
+  }
+
+  public updateRequest(): void {
     this._loadTheaters({
       name: this.searchValue,
       descending: !this.isAscSort,

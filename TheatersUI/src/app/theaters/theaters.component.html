@@ -66,18 +66,29 @@
       </th>
       <th>Тип театра</th>
       <th>Адрес</th>
+      <th>Удалить</th>
     </tr>
   </thead>
   <tbody>
     <tr
       #row
       *ngFor="let theater of theaters"
+      (click)="onRowClick(theater)"
       [class.table-warning]="isMatching(theater.id) && isSearching"
     >
       <td>{{ theater?.name }}</td>
       <td>{{ getType(theater?.theaterType) }}</td>
       <td>
         {{ theater?.address?.streetName }} {{ theater?.address?.houseNumber }}
+      </td>
+      <td>
+        <button
+          (click)="onDeleteBtnClick(theater.id)"
+          type="button"
+          class="btn btn-danger m-0"
+        >
+          Удалить
+        </button>
       </td>
     </tr>
   </tbody>
