@@ -1,12 +1,13 @@
 table {
-  max-width: 900px;
+  max-width: 1000px;
   table-layout: fixed !important;
   width: 100%;
   overflow-y: scroll;
-  height: 300px;
+  height: 400px;
   display: block;
   margin: 0 auto;
   border: 3px solid rgb(42, 33, 63);
+  margin-bottom: 30px;
 }
 table th {
   position: sticky;
@@ -14,7 +15,7 @@ table th {
   z-index: 5;
 }
 .table td {
-  width: 900px;
+  width: 1000px;
   cursor: pointer;
 }
 .table tr:hover {
@@ -28,19 +29,13 @@ table th {
   margin-left: 10px;
   cursor: pointer;
 }
-#options:focus option:first-of-type {
+.options:focus option:first-of-type {
   display: none;
 }
-
 button {
   margin-top: 31px;
   border-radius: 5px;
 }
-
 .container {
-  width: 800px;
-}
-
-.spinner {
-  margin-top: 20px;
+  width: 1000px;
 }

@@ -24,7 +24,6 @@
         <a
           class="nav-link dropdown-toggle"
           data-toggle="dropdown"
-          href="#"
           role="button"
           aria-haspopup="true"
           aria-expanded="false"
@@ -34,30 +33,25 @@
           <a class="dropdown-item" routerLink="/theaters"
             >Просмотреть список театров</a
           >
-          <a class="dropdown-item" routerLink="/addTheaters" href="#"
-            >Добавить театр</a
-          >
-          <!-- <a class="dropdown-item" routerLink="/updateTheaters"
-            >Изменить театр</a
-          > -->
+          <a class="dropdown-item" routerLink="/addTheaters">Добавить театр</a>
         </div>
       </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown" routerLinkActive="active current">
         <a
           class="nav-link dropdown-toggle"
           data-toggle="dropdown"
-          href="#"
           role="button"
           aria-haspopup="true"
           aria-expanded="false"
           >Представления</a
         >
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Просмотреть список представлений</a>
-          <a class="dropdown-item" href="#">Добавить представление</a>
-          <a class="dropdown-item" href="#">Изменить представление</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item delete" href="#">Удалить представление</a>
+          <a class="dropdown-item" routerLink="/performances"
+            >Просмотреть список представлений</a
+          >
+          <a class="dropdown-item" routerLink="/addPerformance"
+            >Добавить представление</a
+          >
         </div>
       </li>
       <li class="nav-item dropdown">

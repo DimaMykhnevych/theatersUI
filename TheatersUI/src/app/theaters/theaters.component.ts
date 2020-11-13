@@ -6,7 +6,6 @@ import { ITheater } from '../models/theater';
 import { IGetTheaterParams } from '../models/theaterParams';
 import { filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { JsonPipe } from '@angular/common';
 import { DialogService } from '../services/dialog.service';
 import { NotificationService } from '../services/notification.service';
 
@@ -20,10 +19,14 @@ export class TheatersComponent implements OnInit {
   public isAscSort: boolean;
   public selectedType: TheaterTypes;
   public fieldToSort: string;
+  public isLoaded: boolean = true;
+
   public searchValue: string;
+  public filterValue;
+
   public isSearching: boolean;
   public searchResult: ITheater[] = [];
-  public filterValue;
+
   public range = [...Array(13).keys()];
   constructor(
     private service: TheaterService,
@@ -86,6 +89,7 @@ export class TheatersComponent implements OnInit {
 
   private _loadTheaters(params: IGetTheaterParams): void {
     this.service.getTheaters(params).subscribe((theaters) => {
+      if (theaters) this.isLoaded = false;
       if (!this.isSearching) {
         this.theaters = theaters;
       } else this.searchResult = theaters;
@@ -129,6 +133,7 @@ export class TheatersComponent implements OnInit {
       type: this.selectedType,
     });
   }
+
   public showDeleteNotification(name): void {
     this.notification.showSuccess(
       `Театр ${name} успешно удален`,

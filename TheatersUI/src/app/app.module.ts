@@ -4,21 +4,26 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatDialogModule } from '@angular/material/dialog';
 import { DialogService } from '../app/services/dialog.service';
-import { MatButtonModule } from '@angular/material/button';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatButtonModule } from '@angular/material/button';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { TheaterService } from '../app/services/theater.service';
+import { PerformanceService } from '../app/services/performance.service';
+
 import { TheatersComponent } from './theaters/theaters.component';
 import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeComponent } from './home/home.component';
 import { TheaterAddFormComponent } from './theater-add-form/theater-add-form.component';
-import { TheatersUpdateComponent } from './theaters-update/theaters-update.component';
 import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dialog.component';
+import { PerformancesComponent } from './performances/performances.component';
+import { SpinnerComponent } from './spinner/spinner.component';
+import { PerformanceAddFormComponent } from './performance-add-form/performance-add-form.component';
 
 @NgModule({
   declarations: [
@@ -27,8 +32,10 @@ import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dial
     NavBarComponent,
     HomeComponent,
     TheaterAddFormComponent,
-    TheatersUpdateComponent,
     MatConfirmDialogComponent,
+    PerformancesComponent,
+    SpinnerComponent,
+    PerformanceAddFormComponent,
   ],
   imports: [
     BrowserModule,
@@ -40,8 +47,9 @@ import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dial
     ToastrModule.forRoot(),
     MatDialogModule,
     MatButtonModule,
+    MatProgressSpinnerModule,
   ],
-  providers: [TheaterService, DialogService],
+  providers: [TheaterService, DialogService, PerformanceService],
   bootstrap: [AppComponent],
   entryComponents: [MatConfirmDialogComponent],
 })

@@ -1,0 +1,143 @@
+<div class="heading">
+  <h2>Просмотр представлений</h2>
+</div>
+
+<div class="container">
+  <div class="row d-flex justify-content-around">
+    <div class="col-lg-4">
+      <div class="form-group">
+        <label for="name">Название представления</label>
+        <input
+          (input)="onPerformanceNameKeyUp($event.target.value)"
+          [(ngModel)]="name"
+          type="text"
+          class="form-control"
+          name="name"
+          id="name"
+          placeholder="Введите название представления"
+        />
+      </div>
+      <div class="form-group">
+        <label for="author">Автор</label>
+        <input
+          (input)="onPerformanceAuthorKeyUp($event.target.value)"
+          [(ngModel)]="authorSearch"
+          type="text"
+          class="form-control"
+          name="author"
+          id="author"
+          placeholder="Введите имя автора"
+        />
+      </div>
+      <div class="form-group">
+        <label for="сomposer">Композитор</label>
+        <input
+          (input)="onPerformanceComposerKeyUp($event.target.value)"
+          [(ngModel)]="composerSearch"
+          type="text"
+          class="form-control"
+          name="сomposer"
+          id="сomposer"
+          placeholder="Введите имя композитора"
+        />
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="form-group">
+        <label for="status">Выбрать статус представления</label>
+        <select
+          [(ngModel)]="status"
+          (change)="onChangeSelect()"
+          class="form-control options"
+          name="status"
+          id="status"
+        >
+          <option>Выберите статус</option>
+          <option *ngFor="let r of statusRange" value="{{ r }}">
+            {{ getStatus(r) }}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="genre">Выбрать жанр представления</label>
+        <select
+          [(ngModel)]="genre"
+          (change)="onChangeSelect()"
+          class="form-control options"
+          name="genre"
+          id="genre"
+        >
+          <option>Выберите жанр</option>
+          <option *ngFor="let r of genreRange" value="{{ r }}">
+            {{ getGenre(r) }}
+          </option>
+        </select>
+      </div>
+      <div class="buttons d-flex justify-content-between">
+        <button type="button" class="btn btn-success" (click)="onFilterClick()">
+          Отфильтровать
+        </button>
+        <button type="button" class="btn btn-warning" (click)="onClearClick()">
+          Сбросить
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="isLoaded">
+  <app-spinner></app-spinner>
+</div>
+<div *ngIf="!isLoaded">
+  <table class="table">
+    <thead>
+      <tr class="table-secondary">
+        <th>
+          Название Представления
+          <span class="icon-sorting" (click)="onNameSortClick()"
+            ><i
+              class="fas"
+              [class.fa-sort-alpha-down]="isAscSort"
+              [class.fa-sort-alpha-up]="!isAscSort"
+            ></i
+          ></span>
+        </th>
+        <th>Статус</th>
+        <th>Жанр</th>
+        <th>Автор</th>
+        <th>Композитор</th>
+        <th>Удалить</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        #row
+        *ngFor="let perf of performances"
+        [class.table-warning]="isMatching(perf.id) && isSearching"
+      >
+        <td (click)="onRowClick(perf)">{{ perf?.name }}</td>
+        <td (click)="onRowClick(perf)">
+          {{ getStatus(perf.performanceStatus) }}
+        </td>
+        <td (click)="onRowClick(perf)">
+          {{ getGenre(perf.performanceGenre) }}
+        </td>
+        <td (click)="onRowClick(perf)">
+          {{ perf.author ? perf.author : "____" }}
+        </td>
+        <td (click)="onRowClick(perf)">
+          {{ perf.composer ? perf.composer : "____" }}
+        </td>
+        <td>
+          <button
+            (click)="onDeleteBtnClick(perf.id)"
+            type="button"
+            class="btn btn-danger m-0"
+          >
+            Удалить
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

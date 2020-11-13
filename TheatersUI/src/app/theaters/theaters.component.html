@@ -22,7 +22,7 @@
         </div>
       </div>
       <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-        <button (click)="onClearClick()" type="button" class="btn btn-danger">
+        <button (click)="onClearClick()" type="button" class="btn btn-warning">
           Сбросить
         </button>
       </div>
@@ -51,44 +51,51 @@
   </div>
 </div>
 
-<table class="table">
-  <thead>
-    <tr class="table-secondary">
-      <th>
-        Название Театра
-        <span class="icon-sorting" (click)="onIconClick()"
-          ><i
-            class="fas"
-            [class.fa-sort-alpha-down]="isAscSort"
-            [class.fa-sort-alpha-up]="!isAscSort"
-          ></i
-        ></span>
-      </th>
-      <th>Тип театра</th>
-      <th>Адрес</th>
-      <th>Удалить</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr
-      #row
-      *ngFor="let theater of theaters"
-      [class.table-warning]="isMatching(theater.id) && isSearching"
-    >
-      <td (click)="onRowClick(theater)">{{ theater?.name }}</td>
-      <td (click)="onRowClick(theater)">{{ getType(theater?.theaterType) }}</td>
-      <td (click)="onRowClick(theater)">
-        {{ theater?.address?.streetName }} {{ theater?.address?.houseNumber }}
-      </td>
-      <td>
-        <button
-          (click)="onDeleteBtnClick(theater.id)"
-          type="button"
-          class="btn btn-danger m-0"
-        >
-          Удалить
-        </button>
-      </td>
-    </tr>
-  </tbody>
-</table>
+<div class="spinner" *ngIf="isLoaded">
+  <app-spinner></app-spinner>
+</div>
+<div *ngIf="!isLoaded">
+  <table class="table">
+    <thead>
+      <tr class="table-secondary">
+        <th>
+          Название Театра
+          <span class="icon-sorting" (click)="onIconClick()"
+            ><i
+              class="fas"
+              [class.fa-sort-alpha-down]="isAscSort"
+              [class.fa-sort-alpha-up]="!isAscSort"
+            ></i
+          ></span>
+        </th>
+        <th>Тип театра</th>
+        <th>Адрес</th>
+        <th>Удалить</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        #row
+        *ngFor="let theater of theaters"
+        [class.table-warning]="isMatching(theater.id) && isSearching"
+      >
+        <td (click)="onRowClick(theater)">{{ theater?.name }}</td>
+        <td (click)="onRowClick(theater)">
+          {{ getType(theater?.theaterType) }}
+        </td>
+        <td (click)="onRowClick(theater)">
+          {{ theater?.address?.streetName }} {{ theater?.address?.houseNumber }}
+        </td>
+        <td>
+          <button
+            (click)="onDeleteBtnClick(theater.id)"
+            type="button"
+            class="btn btn-danger m-0"
+          >
+            Удалить
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
