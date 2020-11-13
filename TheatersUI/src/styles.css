@@ -2,3 +2,12 @@
 /* * {
   border: 1px solid red;
 } */
+@import "~@angular/material/prebuilt-themes/pink-bluegrey.css";
+.form-control.ng-touched.ng-invalid {
+  border: 2px solid red;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

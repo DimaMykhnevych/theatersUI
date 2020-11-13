@@ -32,4 +32,8 @@ export class TheaterService {
   public deleteTheater(id: number): Observable<boolean> {
     return this.http.delete<boolean>(`${this.apiHost}/theater/${id}`);
   }
+
+  public updateTheater(id: number, theater: ITheater): Observable<ITheater> {
+    return this.http.put<ITheater>(`${this.apiHost}/theater/${id}`, theater);
+  }
 }

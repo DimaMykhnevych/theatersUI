@@ -1,0 +1,12 @@
+.yesBtn {
+  margin-right: 1em;
+  background-color: rgb(9, 73, 9);
+}
+
+.noBtn {
+  background-color: rgb(73, 9, 9);
+}
+
+.content {
+  margin-bottom: 1em;
+}

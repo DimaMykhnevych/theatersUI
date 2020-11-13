@@ -1,7 +1,10 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatDialogModule } from '@angular/material/dialog';
+import { DialogService } from '../app/services/dialog.service';
+import { MatButtonModule } from '@angular/material/button';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
@@ -15,6 +18,7 @@ import { NavBarComponent } from './nav-bar/nav-bar.component';
 import { HomeComponent } from './home/home.component';
 import { TheaterAddFormComponent } from './theater-add-form/theater-add-form.component';
 import { TheatersUpdateComponent } from './theaters-update/theaters-update.component';
+import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dialog.component';
 
 @NgModule({
   declarations: [
@@ -24,16 +28,21 @@ import { TheatersUpdateComponent } from './theaters-update/theaters-update.compo
     HomeComponent,
     TheaterAddFormComponent,
     TheatersUpdateComponent,
+    MatConfirmDialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     ToastrModule.forRoot(),
+    MatDialogModule,
+    MatButtonModule,
   ],
-  providers: [TheaterService],
+  providers: [TheaterService, DialogService],
   bootstrap: [AppComponent],
+  entryComponents: [MatConfirmDialogComponent],
 })
 export class AppModule {}

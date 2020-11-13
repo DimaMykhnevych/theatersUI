@@ -7,6 +7,8 @@ import { IGetTheaterParams } from '../models/theaterParams';
 import { filter } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { JsonPipe } from '@angular/common';
+import { DialogService } from '../services/dialog.service';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   selector: 'app-theaters',
@@ -23,7 +25,12 @@ export class TheatersComponent implements OnInit {
   public searchResult: ITheater[] = [];
   public filterValue;
   public range = [...Array(13).keys()];
-  constructor(private service: TheaterService, private router: Router) {}
+  constructor(
+    private service: TheaterService,
+    private router: Router,
+    private dialogService: DialogService,
+    private notification: NotificationService
+  ) {}
 
   public ngOnInit(): void {
     this._loadTheaters({});
@@ -45,11 +52,25 @@ export class TheatersComponent implements OnInit {
   }
 
   public onDeleteBtnClick(theaterId): void {
-    this.service
-      .deleteTheater(theaterId)
-      .pipe(filter(Boolean))
-      .subscribe((response) => {
-        this.updateRequest();
+    const deletedTheaterName = this.theaters.filter(
+      (t) => t.id === theaterId
+    )[0].name;
+    this.dialogService
+      .openConfirmDialog({
+        title: 'Удаление театра',
+        content: `Вы действительно хотите удалить театр ${deletedTheaterName}?`,
+      })
+      .afterClosed()
+      .subscribe((res) => {
+        if (res == 'yes') {
+          this.service
+            .deleteTheater(theaterId)
+            .pipe(filter(Boolean))
+            .subscribe((response) => {
+              this.updateRequest();
+            });
+          this.showDeleteNotification(deletedTheaterName);
+        }
       });
   }
 
@@ -107,5 +128,12 @@ export class TheatersComponent implements OnInit {
       fieldToSort: this.fieldToSort,
       type: this.selectedType,
     });
+  }
+  public showDeleteNotification(name): void {
+    this.notification.showSuccess(
+      `Театр ${name} успешно удален`,
+      'Удаление',
+      2500
+    );
   }
 }

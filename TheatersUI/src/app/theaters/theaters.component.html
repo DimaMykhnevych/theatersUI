@@ -73,12 +73,11 @@
     <tr
       #row
       *ngFor="let theater of theaters"
-      (click)="onRowClick(theater)"
       [class.table-warning]="isMatching(theater.id) && isSearching"
     >
-      <td>{{ theater?.name }}</td>
-      <td>{{ getType(theater?.theaterType) }}</td>
-      <td>
+      <td (click)="onRowClick(theater)">{{ theater?.name }}</td>
+      <td (click)="onRowClick(theater)">{{ getType(theater?.theaterType) }}</td>
+      <td (click)="onRowClick(theater)">
         {{ theater?.address?.streetName }} {{ theater?.address?.houseNumber }}
       </td>
       <td>

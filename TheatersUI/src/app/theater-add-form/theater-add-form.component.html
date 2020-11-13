@@ -1,74 +1,55 @@
-<h2 class="text-center mb-5">Добавление театра</h2>
+<h2 class="text-center mb-5" *ngIf="isAdding">Добавление театра</h2>
+<h2 class="text-center mb-5" *ngIf="!isAdding">Изменение театра</h2>
 <div class="container">
   <div class="row d-flex justify-content-center">
     <div class="form-wrapper col-lg-6 col-md-8 col-sm-12">
-      <form action="post" #f="ngForm" (ngSubmit)="onSubmitClick(f.value)">
+      <form action="post" [formGroup]="form" (ngSubmit)="onSubmitClick()">
         <div class="form-group">
           <label for="name">Название театра</label>
           <input
-            ngModel
-            required
-            minlength="2"
             type="text"
             class="form-control"
+            formControlName="name"
             name="name"
             id="name"
-            [value]="theaterObject.name"
             placeholder="Введите название театра"
-            #name="ngModel"
           />
-          <div class="alert alert-danger" *ngIf="name.touched && !name.valid">
-            <div *ngIf="name.errors.required">Название театра обязательно</div>
-            <div *ngIf="name.errors.minlength">
-              В названии должно быть хотя бы
-              {{ name.errors.minlength.requiredLength }} символа.
-            </div>
+          <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+            Имя театра обязательно
           </div>
         </div>
         <div class="form-group">
           <label for="theaterType">Тип театра</label>
           <select
-            [(ngModel)]="theaterObject.theaterType"
-            ngModel
-            required
-            #theaterType="ngModel"
             class="form-control"
+            formControlName="theaterType"
             name="theaterType"
             id="theaterType"
           >
-            <option
-              *ngFor="let r of range"
-              value="{{ r }}"
-              [ngValue]="theaterObject.theaterType"
-            >
+            <option *ngFor="let r of range" value="{{ r }}">
               {{ getType(r) }}
             </option>
+            <div
+              class="alert alert-danger"
+              *ngIf="theaterType.touched && theaterType.invalid"
+            >
+              Тип театра обязателен
+            </div>
           </select>
-          <div
-            class="alert alert-danger"
-            *ngIf="theaterType.touched && !theaterType.valid"
-          >
-            <div *ngIf="theaterType.errors.required">Тип театра обязателен</div>
-          </div>
         </div>
         <div class="form-group">
           <label for="streetName">Название улицы</label>
           <input
-            ngModel
-            required
-            minlength="2"
-            [value]="theaterObject.address.streetName"
-            pattern="^[а-яА-Я]([а-яА-Я-.]+\s*)+$"
             type="text"
             class="form-control"
+            formControlName="streetName"
             name="streetName"
             id="streetName"
-            #streetName="ngModel"
             placeholder="Введите название улицы"
           />
           <div
             class="alert alert-danger"
-            *ngIf="streetName.touched && !streetName.valid"
+            *ngIf="streetName.touched && streetName.invalid"
           >
             <div *ngIf="streetName.errors.required">
               Название улицы обязательно
@@ -78,27 +59,23 @@
               {{ streetName.errors.minlength.requiredLength }} символа.
             </div>
             <div *ngIf="streetName.errors.pattern">
-              В названии должны быть буквы
+              Невалидно название улицы
             </div>
           </div>
         </div>
         <div class="form-group">
           <label for="houseNumber">Номер улицы</label>
           <input
-            ngModel
-            required
             type="text"
-            [value]="theaterObject.address.houseNumber"
-            pattern="^[1-9][0-9]*$"
             class="form-control"
+            formControlName="houseNumber"
             name="houseNumber"
             id="houseNumber"
-            #houseNumber="ngModel"
             placeholder="Введите номер улицы"
           />
           <div
             class="alert alert-danger"
-            *ngIf="houseNumber.touched && !houseNumber.valid"
+            *ngIf="houseNumber.touched && houseNumber.invalid"
           >
             <div *ngIf="houseNumber.errors.required">
               Номер улицы обязателен
@@ -109,8 +86,21 @@
             </div>
           </div>
         </div>
-        <button type="submit" class="btn btn-success" [disabled]="!f.valid">
+        <button
+          type="submit"
+          class="btn btn-success"
+          *ngIf="isAdding"
+          [disabled]="form.invalid"
+        >
           Добавить
+        </button>
+        <button
+          type="submit"
+          class="btn btn-success"
+          *ngIf="!isAdding"
+          [disabled]="form.invalid"
+        >
+          Изменить
         </button>
       </form>
     </div>
