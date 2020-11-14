@@ -9,5 +9,5 @@ export interface IPerformance {
   performanceGenre: PerformanceGenres;
   author: string;
   composer: string;
-  theaterPerformances: ITheaterPerformance[];
+  // theaterPerformances: ITheaterPerformance[];
 }

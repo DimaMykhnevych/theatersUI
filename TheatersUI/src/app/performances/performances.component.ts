@@ -9,6 +9,7 @@ import { IGetPerformanceParams } from '../models/performanceParams';
 import { DialogService } from '../services/dialog.service';
 import { NotificationService } from '../services/notification.service';
 import { filter } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-performances',
@@ -35,7 +36,8 @@ export class PerformancesComponent implements OnInit {
   constructor(
     private service: PerformanceService,
     private dialogService: DialogService,
-    private notification: NotificationService
+    private notification: NotificationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -51,12 +53,27 @@ export class PerformancesComponent implements OnInit {
         this.performances = performances;
       } else if (this.name || this.authorSearch || this.composerSearch) {
         this.searchResult = performances;
+        // this.performances = this.performances.sort(this.compare);
         this.isSearching = true;
       } else {
         this.searchResult = [];
       }
     });
   }
+
+  // public compare(a, b) {
+  //   // Use toUpperCase() to ignore character casing
+  //   const bandA = a.name.toUpperCase();
+  //   const bandB = b.name.toUpperCase();
+
+  //   let comparison = 0;
+  //   if (bandA > bandB) {
+  //     comparison = 1;
+  //   } else if (bandA < bandB) {
+  //     comparison = -1;
+  //   }
+  //   return comparison * -1;
+  // }
 
   public onNameSortClick(): void {
     this.isAscSort = !this.isAscSort;
@@ -120,7 +137,13 @@ export class PerformancesComponent implements OnInit {
     return false;
   }
 
-  public onRowClick(performance): void {}
+  public onRowClick(performance): void {
+    this.router.navigate(['/addPerformance'], {
+      queryParams: {
+        performance: performance.id,
+      },
+    });
+  }
 
   public onDeleteBtnClick(id: number): void {
     const deletedPerformanceName = this.performances.filter(
@@ -156,7 +179,7 @@ export class PerformancesComponent implements OnInit {
   public updateRequest(): void {
     this._loadPerformances({
       name: this.name,
-      descending: !this.isAscSort,
+      descending: this.isAscSort,
       fieldToSort: this.fieldToSort,
       author: this.authorSearch,
       composer: this.composerSearch,

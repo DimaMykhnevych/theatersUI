@@ -13,6 +13,7 @@ const routes: Routes = [
   { path: 'performances', component: PerformancesComponent },
   { path: 'addTheaters/:id', component: TheaterAddFormComponent },
   { path: 'addTheaters', component: TheaterAddFormComponent },
+  { path: 'addPerformance/:id', component: PerformanceAddFormComponent },
   { path: 'addPerformance', component: PerformanceAddFormComponent },
   { path: '**', component: HomeComponent },
 ];

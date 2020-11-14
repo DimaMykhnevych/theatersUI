@@ -1,1 +1,112 @@
-<p>performance-add-form works!</p>
+<h2 class="text-center mb-5" *ngIf="isAdding">Добавление представления</h2>
+<h2 class="text-center mb-5" *ngIf="!isAdding">Изменение представления</h2>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="form-wrapper col-lg-6 col-md-8 col-sm-12">
+      <form action="post" [formGroup]="form" (ngSubmit)="onSubmitClick()">
+        <div class="form-group">
+          <label for="name">Название представления</label>
+          <input
+            type="text"
+            formControlName="name"
+            class="form-control"
+            name="name"
+            id="name"
+            placeholder="Введите название представления"
+          />
+          <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+            Имя театра обязательно
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="performanceStatus">Статус представления</label>
+          <select
+            class="form-control"
+            formControlName="performanceStatus"
+            name="performanceStatus"
+            id="performanceStatus"
+          >
+            <option *ngFor="let r of statusRange" value="{{ r }}">
+              {{ getStatus(r) }}
+            </option>
+          </select>
+          <div
+            class="alert alert-danger"
+            *ngIf="performanceStatus.touched && performanceStatus.invalid"
+          >
+            Статус обязателен
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="performanceGenre">Жанр представления</label>
+          <select
+            class="form-control"
+            formControlName="performanceGenre"
+            name="performanceGenre"
+            id="performanceGenre"
+          >
+            <option *ngFor="let r of genreRange" value="{{ r }}">
+              {{ getGenre(r) }}
+            </option>
+          </select>
+          <div
+            class="alert alert-danger"
+            *ngIf="performanceGenre.touched && performanceGenre.invalid"
+          >
+            Жанр обязателен
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="author">Автор</label>
+          <input
+            type="text"
+            formControlName="author"
+            class="form-control"
+            name="author"
+            id="author"
+            placeholder="Введите имя автора"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="author.touched && author.invalid"
+          >
+            Невалидное имя автора
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="composer">Композитор</label>
+          <input
+            type="text"
+            formControlName="composer"
+            class="form-control"
+            name="composer"
+            id="composer"
+            placeholder="Введите имя композитора"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="composer.touched && composer.invalid"
+          >
+            Невалидное имя композитора
+          </div>
+        </div>
+        <button
+          type="submit"
+          class="btn btn-success"
+          *ngIf="isAdding"
+          [disabled]="form.invalid"
+        >
+          Добавить
+        </button>
+        <button
+          type="submit"
+          class="btn btn-success"
+          *ngIf="!isAdding"
+          [disabled]="form.invalid"
+        >
+          Изменить
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -29,13 +29,13 @@
             <option *ngFor="let r of range" value="{{ r }}">
               {{ getType(r) }}
             </option>
-            <div
-              class="alert alert-danger"
-              *ngIf="theaterType.touched && theaterType.invalid"
-            >
-              Тип театра обязателен
-            </div>
           </select>
+          <div
+            class="alert alert-danger"
+            *ngIf="theaterType.touched && theaterType.invalid"
+          >
+            Тип театра обязателен
+          </div>
         </div>
         <div class="form-group">
           <label for="streetName">Название улицы</label>
