@@ -5,6 +5,8 @@ import { PerformancesComponent } from './performances/performances.component';
 import { TheaterAddFormComponent } from './theater-add-form/theater-add-form.component';
 import { TheatersComponent } from './theaters/theaters.component';
 import { PerformanceAddFormComponent } from './performance-add-form/performance-add-form.component';
+import { PosterComponent } from './poster/poster.component';
+import { PosterAddFormComponent } from './poster-add-form/poster-add-form.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -15,6 +17,9 @@ const routes: Routes = [
   { path: 'addTheaters', component: TheaterAddFormComponent },
   { path: 'addPerformance/:id', component: PerformanceAddFormComponent },
   { path: 'addPerformance', component: PerformanceAddFormComponent },
+  { path: 'poster', component: PosterComponent },
+  { path: 'addPoster/:id', component: PosterAddFormComponent },
+  { path: 'addPoster', component: PosterAddFormComponent },
   { path: '**', component: HomeComponent },
 ];
 

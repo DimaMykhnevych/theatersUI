@@ -54,22 +54,18 @@
           >
         </div>
       </li>
-      <li class="nav-item dropdown">
+      <li class="nav-item dropdown" routerLinkActive="active current">
         <a
           class="nav-link dropdown-toggle"
           data-toggle="dropdown"
-          href="#"
           role="button"
           aria-haspopup="true"
           aria-expanded="false"
-          >Пользователи</a
+          >Афиша</a
         >
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="#">Просмотреть список пользователей</a>
-          <a class="dropdown-item" href="#">Добавить пользователя</a>
-          <a class="dropdown-item" href="#">Изменить пользователя</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item delete" href="#">Удалить пользователя</a>
+          <a class="dropdown-item" routerLink="/poster">Афиша по театрам</a>
+          <a class="dropdown-item" routerLink="/addPoster">Дополнить афишу</a>
         </div>
       </li>
       <li class="nav-item dropdown">

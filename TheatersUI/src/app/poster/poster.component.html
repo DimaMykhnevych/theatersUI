@@ -1,0 +1,161 @@
+<div class="heading">
+  <h2>Просмотр афиши</h2>
+</div>
+
+<div class="container">
+  <div class="row d-flex justify-content-around">
+    <div class="col-lg-4">
+      <div class="form-group">
+        <label for="theater">Театр</label>
+        <select
+          [(ngModel)]="theaterName"
+          (change)="onChangeSelect()"
+          class="form-control"
+          name="theater"
+          id="theater"
+        >
+          <option *ngFor="let t of theaters" value="{{ t.name }}">
+            {{ t.name }}
+          </option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="performance">Представление</label>
+        <input
+          (input)="onPerformanceKeyUp($event.target.value)"
+          [(ngModel)]="performanceName"
+          type="text"
+          class="form-control"
+          name="performance"
+          id="performance"
+          placeholder="Введите название представления"
+        />
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="form-group">
+        <label for="startDate">Начальная дата</label>
+        <input
+          (blur)="onBlurStartDate($event.target.value)"
+          [(ngModel)]="startDate"
+          type="datetime-local"
+          class="form-control"
+          name="startDate"
+          id="startDate"
+          placeholder="Введите начальную дату"
+        />
+      </div>
+      <div class="form-group">
+        <label for="endDate">Конечная дата</label>
+        <input
+          (blur)="onBlurEndDate($event.target.value)"
+          [(ngModel)]="endDate"
+          type="datetime-local"
+          class="form-control"
+          name="endDate"
+          id="endDate"
+          placeholder="Введите конечную дату"
+        />
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="form-group">
+        <label for="startPrice">Начальная цена</label>
+        <input
+          (blur)="onBlurStartPrice($event.target.value)"
+          [(ngModel)]="startPrice"
+          type="number"
+          class="form-control"
+          name="startPrice"
+          id="startPrice"
+          placeholder="Введите начальную цену"
+        />
+      </div>
+      <div class="form-group">
+        <label for="endPrice">Конечная цена</label>
+        <input
+          (blur)="onBlurEndPrice($event.target.value)"
+          [(ngModel)]="endPrice"
+          type="number"
+          class="form-control"
+          name="endPrice"
+          id="endPrice"
+          placeholder="Введите конечную цену"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-around mb-4">
+    <button
+      type="button"
+      class="btn btn-success w-25"
+      (click)="onFilterClick()"
+    >
+      Отфильтровать
+    </button>
+    <button type="button" class="btn btn-warning w-25" (click)="onClearClick()">
+      Сбросить
+    </button>
+  </div>
+</div>
+
+<div *ngIf="isLoaded">
+  <app-spinner></app-spinner>
+</div>
+<div *ngIf="!isLoaded">
+  <table class="table">
+    <thead>
+      <tr class="table-secondary">
+        <th>
+          Название Театра
+          <span class="icon-sorting" (click)="onTheaterNameSortClick()"
+            ><i
+              class="fas"
+              [class.fa-sort-alpha-down]="isAscSort"
+              [class.fa-sort-alpha-up]="!isAscSort"
+            ></i
+          ></span>
+        </th>
+        <th>
+          Название Представления
+          <span class="icon-sorting" (click)="onPerformanceNameSortClick()"
+            ><i
+              class="fas"
+              [class.fa-sort-alpha-down]="isAscSortPerf"
+              [class.fa-sort-alpha-up]="!isAscSortPerf"
+            ></i
+          ></span>
+        </th>
+        <th>Дата Проведения</th>
+        <th>Цена, грн</th>
+        <th>Удалить</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngFor="let tp of theaterPerformances"
+        [class.table-warning]="isMatching(tp.id) && isSearching"
+      >
+        <td (click)="onRowClick(tp)">{{ tp.theater.name }}</td>
+        <td (click)="onRowClick(tp)">
+          {{ tp.performance.name }}
+        </td>
+        <td (click)="onRowClick(tp)">
+          {{ tp.performanceDate | date: "dd/MM/yy, h:mm a" }}
+        </td>
+        <td (click)="onRowClick(tp)">
+          {{ tp.ticketPrice }} <i class="ml-1 fas fa-hryvnia"></i>
+        </td>
+        <td>
+          <button
+            (click)="onDeleteBtnClick(tp.id)"
+            type="button"
+            class="btn btn-danger m-0"
+          >
+            Удалить
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

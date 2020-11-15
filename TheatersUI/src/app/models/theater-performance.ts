@@ -10,5 +10,5 @@ export interface ITheaterPerformance {
   ticketPrice: number;
   theater: ITheater;
   performance: IPerformance;
-  orders: IOrder[];
+  // orders: IOrder[];
 }

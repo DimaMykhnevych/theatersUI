@@ -1,0 +1,96 @@
+<h2 class="text-center mb-5" *ngIf="isAdding">Дополнение афиши</h2>
+<h2 class="text-center mb-5" *ngIf="!isAdding">Изменение афиши</h2>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="form-wrapper col-lg-6 col-md-8 col-sm-12">
+      <form [formGroup]="form" (ngSubmit)="onSubmitClick()">
+        <div class="form-group">
+          <label for="theaterName">Театр</label>
+          <select
+            formControlName="theaterName"
+            class="form-control"
+            name="theaterName"
+            id="theaterName"
+          >
+            <option *ngFor="let t of theaters" value="{{ t.id }}">
+              {{ t.name }}
+            </option>
+          </select>
+          <div
+            class="alert alert-danger"
+            *ngIf="theaterName.touched && theaterName.invalid"
+          >
+            Театр обязателен
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="performanceName">Представление</label>
+          <select
+            formControlName="performanceName"
+            class="form-control"
+            name="performanceName"
+            id="performanceName"
+          >
+            <option *ngFor="let p of performances" value="{{ p.id }}">
+              {{ p.name }}
+            </option>
+          </select>
+          <div
+            class="alert alert-danger"
+            *ngIf="performanceName.touched && performanceName.invalid"
+          >
+            Представление обязательно
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="performanceDate">Дата представления</label>
+          <input
+            formControlName="performanceDate"
+            type="datetime-local"
+            class="form-control"
+            name="performanceDate"
+            id="performanceDate"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="performanceDate.touched && performanceDate.invalid"
+          >
+            Дата обязательна
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="ticketPrice">Цена</label>
+          <input
+            formControlName="ticketPrice"
+            type="number"
+            class="form-control"
+            name="ticketPrice"
+            id="ticketPrice"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="ticketPrice.touched && ticketPrice.invalid"
+          >
+            Цена обязательна
+          </div>
+        </div>
+        <button
+          type="submit"
+          class="btn btn-success"
+          *ngIf="isAdding"
+          [disabled]="form.invalid"
+        >
+          Добавить
+        </button>
+        <button
+          type="submit"
+          class="btn btn-success"
+          *ngIf="!isAdding"
+          [disabled]="form.invalid"
+        >
+          Изменить
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -24,6 +24,8 @@ import { MatConfirmDialogComponent } from './mat-confirm-dialog/mat-confirm-dial
 import { PerformancesComponent } from './performances/performances.component';
 import { SpinnerComponent } from './spinner/spinner.component';
 import { PerformanceAddFormComponent } from './performance-add-form/performance-add-form.component';
+import { PosterComponent } from './poster/poster.component';
+import { PosterAddFormComponent } from './poster-add-form/poster-add-form.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +38,8 @@ import { PerformanceAddFormComponent } from './performance-add-form/performance-
     PerformancesComponent,
     SpinnerComponent,
     PerformanceAddFormComponent,
+    PosterComponent,
+    PosterAddFormComponent,
   ],
   imports: [
     BrowserModule,

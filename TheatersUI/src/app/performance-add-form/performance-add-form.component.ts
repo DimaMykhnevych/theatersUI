@@ -86,13 +86,13 @@ export class PerformanceAddFormComponent implements OnInit {
   public onSubmitClick() {
     this.mapAddingPerformanceObject(this.form.value);
     if (this.isAdding) {
-      this.addTheater();
+      this.addPerformance();
     } else {
-      this.updateTheater();
+      this.updatePerformance();
     }
   }
 
-  public updateTheater(): void {
+  public updatePerformance(): void {
     this.service
       .updatePerformance(this.performanceObj.id, this.performanceObj)
       .subscribe((response) => {
@@ -108,7 +108,7 @@ export class PerformanceAddFormComponent implements OnInit {
       });
   }
 
-  public addTheater(): void {
+  public addPerformance(): void {
     this.service
       .addPerformance(this.performanceObj)
       .subscribe((responsePerf) => {
