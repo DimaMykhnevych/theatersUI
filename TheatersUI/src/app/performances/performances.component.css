@@ -39,3 +39,6 @@ button {
 .container {
   width: 1000px;
 }
+.spinner {
+  margin-top: 20px;
+}

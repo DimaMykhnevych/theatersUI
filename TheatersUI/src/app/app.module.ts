@@ -26,6 +26,10 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { PerformanceAddFormComponent } from './performance-add-form/performance-add-form.component';
 import { PosterComponent } from './poster/poster.component';
 import { PosterAddFormComponent } from './poster-add-form/poster-add-form.component';
+import { AttendanceReportComponent } from './attendance-report/attendance-report.component';
+import { AttendancePerformanceReportComponent } from './attendance-performance-report/attendance-performance-report.component';
+import { PopularGenresReportComponent } from './popular-genres-report/popular-genres-report.component';
+import { TicketSalesReportComponent } from './ticket-sales-report/ticket-sales-report.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +44,10 @@ import { PosterAddFormComponent } from './poster-add-form/poster-add-form.compon
     PerformanceAddFormComponent,
     PosterComponent,
     PosterAddFormComponent,
+    AttendanceReportComponent,
+    AttendancePerformanceReportComponent,
+    PopularGenresReportComponent,
+    TicketSalesReportComponent,
   ],
   imports: [
     BrowserModule,

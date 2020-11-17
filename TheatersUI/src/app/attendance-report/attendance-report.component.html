@@ -1,0 +1,78 @@
+<div class="heading">
+  <h2>Статистика по посещениям театров</h2>
+</div>
+<div class="spinner" *ngIf="isLoaded">
+  <app-spinner></app-spinner>
+</div>
+<div *ngIf="!isLoaded">
+  <table class="table mb-5">
+    <thead>
+      <tr class="table-secondary">
+        <th>Название Театра</th>
+        <th>Тип театра</th>
+        <th>Количество посещений</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr #row *ngFor="let theater of theatersAttendance">
+        <td (click)="onRowClick(theater)">{{ theater?.name }}</td>
+        <td (click)="onRowClick(theater)">
+          {{ getType(theater?.theaterType) }}
+        </td>
+        <td (click)="onRowClick(theater)">
+          {{ theater.attendanceAmount }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col-lg-6">
+        <h3 class="text-center">Самые популярные театры</h3>
+        <table class="table">
+          <thead>
+            <tr class="table-secondary">
+              <th>Название Театра</th>
+              <th>Тип театра</th>
+              <th>Количество посещений</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr #row *ngFor="let theater of mostPopularTheaters">
+              <td (click)="onRowClick(theater)">{{ theater?.name }}</td>
+              <td (click)="onRowClick(theater)">
+                {{ getType(theater?.theaterType) }}
+              </td>
+              <td (click)="onRowClick(theater)">
+                {{ theater.attendanceAmount }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-lg-6">
+        <h3 class="text-center">Самые непопулярные театры</h3>
+        <table class="table">
+          <thead>
+            <tr class="table-secondary">
+              <th>Название Театра</th>
+              <th>Тип театра</th>
+              <th>Количество посещений</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr #row *ngFor="let theater of mostUnpopularTheaters">
+              <td (click)="onRowClick(theater)">{{ theater?.name }}</td>
+              <td (click)="onRowClick(theater)">
+                {{ getType(theater?.theaterType) }}
+              </td>
+              <td (click)="onRowClick(theater)">
+                {{ theater.attendanceAmount }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

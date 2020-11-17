@@ -1,0 +1,91 @@
+<div class="heading">
+  <h2>Статистика по посещениям представлений</h2>
+</div>
+
+<div class="spinner" *ngIf="isLoaded">
+  <app-spinner></app-spinner>
+</div>
+<div *ngIf="!isLoaded">
+  <table class="table mb-5">
+    <thead>
+      <tr class="table-secondary">
+        <th>Название Представления</th>
+        <th>Жанр</th>
+        <th>Автор</th>
+        <th>Количество посещений</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr #row *ngFor="let perf of performancesAttendance">
+        <td (click)="onRowClick(perf)">{{ perf?.name }}</td>
+        <td (click)="onRowClick(perf)">
+          {{ getGenre(perf.performanceGenre) }}
+        </td>
+        <td (click)="onRowClick(perf)">
+          {{ perf.author ? perf.author : "____" }}
+        </td>
+        <td (click)="onRowClick(perf)">
+          {{ perf.attendanceAmount }}
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="container mb-3">
+    <div class="row">
+      <div class="col-lg-6">
+        <h3 class="text-center">Самые популярные представления</h3>
+        <table class="table mb-5">
+          <thead>
+            <tr class="table-secondary">
+              <th>Название Представления</th>
+              <th>Жанр</th>
+              <th>Автор</th>
+              <th>Количество посещений</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr #row *ngFor="let perf of mostPopularPerformances">
+              <td (click)="onRowClick(perf)">{{ perf?.name }}</td>
+              <td (click)="onRowClick(perf)">
+                {{ getGenre(perf.performanceGenre) }}
+              </td>
+              <td (click)="onRowClick(perf)">
+                {{ perf.author ? perf.author : "____" }}
+              </td>
+              <td (click)="onRowClick(perf)">
+                {{ perf.attendanceAmount }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-lg-6">
+        <h3 class="text-center">Самые непопулярные представления</h3>
+        <table class="table mb-5">
+          <thead>
+            <tr class="table-secondary">
+              <th>Название Представления</th>
+              <th>Жанр</th>
+              <th>Автор</th>
+              <th>Количество посещений</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr #row *ngFor="let perf of mostUnpopularPerformances">
+              <td (click)="onRowClick(perf)">{{ perf?.name }}</td>
+              <td (click)="onRowClick(perf)">
+                {{ getGenre(perf.performanceGenre) }}
+              </td>
+              <td (click)="onRowClick(perf)">
+                {{ perf.author ? perf.author : "____" }}
+              </td>
+              <td (click)="onRowClick(perf)">
+                {{ perf.attendanceAmount }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

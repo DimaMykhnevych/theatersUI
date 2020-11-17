@@ -1,0 +1,107 @@
+<div class="heading">
+  <h2>Продажи билетов</h2>
+</div>
+<div class="container mb-4">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="form-group">
+        <label for="startDate">Начальная дата</label>
+        <input
+          [(ngModel)]="startDate"
+          type="date"
+          class="form-control"
+          name="startDate"
+          id="startDate"
+          placeholder="Введите начальную дату"
+        />
+      </div>
+    </div>
+    <div class="col-lg-4">
+      <div class="form-group">
+        <label for="endDate">Конечная дата</label>
+        <input
+          [(ngModel)]="endDate"
+          type="date"
+          class="form-control"
+          name="endDate"
+          id="endDate"
+          placeholder="Введите конечную дату"
+        />
+      </div>
+    </div>
+    <div class="col lg-4">
+      <div class="form-group">
+        <label for="theaterName">Театр</label>
+        <select
+          [(ngModel)]="theaterName"
+          (change)="onChangeSelect()"
+          class="form-control"
+          name="theaterName"
+          id="theaterName"
+        >
+          <option *ngFor="let t of theaters" value="{{ t.name }}">
+            {{ t.name }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-5">
+      <div class="row d-flex justify-content-center">
+        <div class="col-lg-5 d-flex justify-content-center">
+          <button
+            (click)="onGetReportBtnClick()"
+            type="button"
+            class="btn btn-outline-info"
+          >
+            Получить отчет
+          </button>
+        </div>
+        <div class="col-lg-5 d-flex justify-content-center">
+          <button
+            (click)="onClearClick()"
+            type="button"
+            class="btn btn-outline-warning"
+          >
+            Отчистить
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!isReportBtnClicked" class="container mt-5">
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-12 d-flex justify-content-center">
+      Здесь будет результат
+    </div>
+  </div>
+</div>
+
+<div class="spinner" *ngIf="isLoaded && isReportBtnClicked">
+  <app-spinner></app-spinner>
+</div>
+<div *ngIf="!isLoaded">
+  <table class="table mb-4">
+    <thead>
+      <tr class="table-secondary">
+        <th>Название Театра</th>
+        <th>От</th>
+        <th>До</th>
+        <th>Доход, грн</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tick of tisketSales" (click)="onRowClick(tick.id)">
+        <td>{{ tick.theaterName }}</td>
+        <td>{{ tick.startDate | date: "dd/MM/yy, h:mm a" }}</td>
+        <td>{{ tick.endDate | date: "dd/MM/yy, h:mm a" }}</td>
+        <td class="table-dark">
+          {{ tick.revenue }} <i class="ml-1 fas fa-hryvnia"></i>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

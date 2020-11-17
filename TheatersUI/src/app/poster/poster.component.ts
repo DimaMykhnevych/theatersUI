@@ -21,6 +21,8 @@ export class PosterComponent implements OnInit {
   public isLoaded: boolean = true;
   public isSearching: boolean;
   public isAscSortPerf: boolean;
+  public isAscSortDate: boolean;
+  public isAscSortPrice: boolean;
 
   public isAscSort: boolean;
   public fieldToSort: string;
@@ -80,6 +82,18 @@ export class PosterComponent implements OnInit {
   public onPerformanceNameSortClick() {
     this.isAscSortPerf = !this.isAscSortPerf;
     this.fieldToSort = 'performanceName';
+    this.updateRequest();
+  }
+
+  public onDateSortClick() {
+    this.isAscSortDate = !this.isAscSortDate;
+    this.fieldToSort = 'date';
+    this.updateRequest();
+  }
+
+  public onPriceSortClick() {
+    this.isAscSortPrice = !this.isAscSortPrice;
+    this.fieldToSort = 'ticketprice';
     this.updateRequest();
   }
 
@@ -167,10 +181,7 @@ export class PosterComponent implements OnInit {
 
   public updateRequest(): void {
     this._loadTheaterPerformances({
-      descending:
-        this.fieldToSort === 'theaterName'
-          ? !this.isAscSort
-          : !this.isAscSortPerf,
+      descending: this.defineSortAsc(),
       fieldToSort: this.fieldToSort,
       theaterName: this.theaterName,
       performanceName: this.performanceName,
@@ -179,6 +190,17 @@ export class PosterComponent implements OnInit {
       startPrice: this.startPrice,
       endPrice: this.endPrice,
     });
+  }
+
+  private defineSortAsc(): boolean {
+    if (this.fieldToSort === 'theaterName') {
+      return !this.isAscSort;
+    } else if (this.fieldToSort === 'performanceName') {
+      return !this.isAscSortPerf;
+    } else if (this.fieldToSort === 'date') {
+      return !this.isAscSortDate;
+    }
+    return !this.isAscSortPrice;
   }
 
   public isMatching(tpId): boolean {

@@ -1,0 +1,63 @@
+<div class="heading">
+  <h2>Статистика по популярным жанрам, авторам и композиторам</h2>
+</div>
+<div class="spinner" *ngIf="isLoaded">
+  <app-spinner></app-spinner>
+</div>
+<div *ngIf="!isLoaded">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4">
+        <h3 class="text-center">Жанры</h3>
+        <table class="table mb-5">
+          <thead>
+            <tr class="table-secondary">
+              <th>Жанр</th>
+              <th>Количество посетителей</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let g of genres">
+              <td>{{ getGenre(g.performanceGenre) }}</td>
+              <td>{{ g.attendanceAmount }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-lg-4">
+        <h3 class="text-center">Авторы</h3>
+        <table class="table mb-5">
+          <thead>
+            <tr class="table-secondary">
+              <th>Автор</th>
+              <th>Количество посетителей</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let a of authors">
+              <td>{{ a.author }}</td>
+              <td>{{ a.attendanceAmount }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="col-lg-4">
+        <h3 class="text-center">Композиторы</h3>
+        <table class="table mb-5">
+          <thead>
+            <tr class="table-secondary">
+              <th>Композитор</th>
+              <th>Количество посетителей</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let c of composers">
+              <td>{{ c.composer }}</td>
+              <td>{{ c.attendanceAmount }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

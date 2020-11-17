@@ -126,8 +126,25 @@
             ></i
           ></span>
         </th>
-        <th>Дата Проведения</th>
-        <th>Цена, грн</th>
+        <th>
+          Дата Проведения
+          <span class="icon-sorting" (click)="onDateSortClick()"
+            ><i
+              class="fas"
+              [class.fa-sort-alpha-down]="isAscSortDate"
+              [class.fa-sort-alpha-up]="!isAscSortDate"
+            ></i
+          ></span>
+        </th>
+        <th>
+          Цена, грн<span class="icon-sorting" (click)="onPriceSortClick()"
+            ><i
+              class="fas"
+              [class.fa-sort-alpha-down]="isAscSortPrice"
+              [class.fa-sort-alpha-up]="!isAscSortPrice"
+            ></i
+          ></span>
+        </th>
         <th>Удалить</th>
       </tr>
     </thead>
