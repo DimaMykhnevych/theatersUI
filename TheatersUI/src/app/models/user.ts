@@ -3,10 +3,10 @@ import { IUserAnswer } from './user-answer';
 
 export interface IUser {
   id: number;
-  fullName: number;
+  fullName: string;
   birthDate: Date;
   email: string;
   telephoneNumber: string;
-  orders: IOrder[];
-  userAnswers: IUserAnswer[];
+  // orders: IOrder[];
+  // userAnswers: IUserAnswer[];
 }

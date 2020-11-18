@@ -1,0 +1,56 @@
+.heading {
+  text-align: center;
+  margin-bottom: 15px;
+}
+.spinner {
+  margin-top: 20px;
+}
+table {
+  max-width: 1050px;
+  table-layout: fixed !important;
+  width: 100%;
+  overflow-y: scroll;
+  height: 400px;
+  display: block;
+  margin: 0 auto;
+  border: 3px solid rgb(42, 33, 63);
+  margin-bottom: 30px;
+}
+table th {
+  position: sticky;
+  top: -1px;
+  z-index: 5;
+}
+.table td {
+  width: 1050px;
+  /* cursor: pointer; */
+}
+.table tr:hover {
+  background-color: rgb(43, 47, 61);
+}
+button {
+  margin-top: 31px;
+  border-radius: 5px;
+}
+.container {
+  width: 1050px;
+}
+@media print {
+  table {
+    height: auto;
+    text-align: center;
+    page-break-after: auto;
+    overflow: auto;
+  }
+  tr {
+    page-break-inside: avoid;
+    page-break-after: auto;
+    text-align: center;
+  }
+  button {
+    display: none;
+  }
+  .last-table {
+    page-break-before: always;
+  }
+}

@@ -11,6 +11,12 @@ import { AttendanceReportComponent } from './attendance-report/attendance-report
 import { AttendancePerformanceReportComponent } from './attendance-performance-report/attendance-performance-report.component';
 import { PopularGenresReportComponent } from './popular-genres-report/popular-genres-report.component';
 import { TicketSalesReportComponent } from './ticket-sales-report/ticket-sales-report.component';
+import { PerformanceReportComponent } from './performance-report/performance-report.component';
+import { MakeOrderComponent } from './make-order/make-order.component';
+import { PerformancesReviewPageComponent } from './performances-review-page/performances-review-page.component';
+import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
+import { OrderReviewComponent } from './order-review/order-review.component';
+import { TicketPrintPageComponent } from './ticket-print-page/ticket-print-page.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -22,7 +28,7 @@ const routes: Routes = [
   { path: 'addPerformance/:id', component: PerformanceAddFormComponent },
   { path: 'addPerformance', component: PerformanceAddFormComponent },
   { path: 'poster', component: PosterComponent },
-  { path: 'addPoster/:id', component: PosterAddFormComponent },
+  // { path: 'addPoster/:id', component: PosterAddFormComponent },
   { path: 'addPoster', component: PosterAddFormComponent },
   { path: 'attendanceTheaters', component: AttendanceReportComponent },
   {
@@ -34,6 +40,15 @@ const routes: Routes = [
     component: PopularGenresReportComponent,
   },
   { path: 'ticketSales', component: TicketSalesReportComponent },
+  { path: 'performanceReport', component: PerformanceReportComponent },
+  { path: 'makeOrder', component: MakeOrderComponent },
+  {
+    path: 'performanceReview',
+    component: PerformancesReviewPageComponent,
+  },
+  { path: 'registration', component: UserRegistrationFormComponent },
+  { path: 'orderReview', component: OrderReviewComponent },
+  { path: 'printTicket', component: TicketPrintPageComponent },
   { path: '**', component: HomeComponent },
 ];
 

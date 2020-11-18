@@ -1,0 +1,89 @@
+<h2 class="text-center mb-5">Оформление заказа</h2>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="form-wrapper col-lg-6 col-md-8 col-sm-12">
+      <form action="post" [formGroup]="form" (ngSubmit)="onSubmitClick()">
+        <div class="form-group">
+          <label for="fullName">ФИО</label>
+          <input
+            type="text"
+            class="form-control"
+            formControlName="fullName"
+            name="fullName"
+            id="fullName"
+            placeholder="Введите свое ФИО"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="fullName.touched && fullName.invalid"
+          >
+            ФИО обязательно
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="birthDate">Дата рождения</label>
+          <input
+            type="date"
+            class="form-control"
+            formControlName="birthDate"
+            name="birthDate"
+            id="birthDate"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="birthDate.touched && birthDate.invalid"
+          >
+            <div *ngIf="birthDate.errors.required">
+              Дата рождения обязательна
+            </div>
+            <div *ngIf="birthDate.errors.age">
+              Вам должно быть больше 18 лет
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="email">Электронная почта</label>
+          <input
+            type="email"
+            class="form-control"
+            formControlName="email"
+            name="email"
+            id="email"
+            placeholder="test@gmail.com"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="email.touched && email.invalid"
+          >
+            <div *ngIf="email.errors.required">
+              Электронная почта обязательна
+            </div>
+            <div *ngIf="email.errors.pattern">Почта введена неверно</div>
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="telephoneNumber">Номер телефона</label>
+          <input
+            type="tel"
+            class="form-control"
+            formControlName="telephoneNumber"
+            name="telephoneNumber"
+            id="telephoneNumber"
+            placeholder="Введите номер телефона"
+          />
+          <div
+            class="alert alert-danger"
+            *ngIf="telephoneNumber.touched && telephoneNumber.invalid"
+          >
+            Телефон должен быть в формате +380*********<br />
+            Или 380********* <br />
+            Или 0*********
+          </div>
+        </div>
+        <button type="submit" class="btn btn-success" [disabled]="form.invalid">
+          Зарегистрироваться
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

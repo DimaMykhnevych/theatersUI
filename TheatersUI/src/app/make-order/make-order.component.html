@@ -1,0 +1,50 @@
+<div class="heading mb-5">
+  <h2>Театры города Харьков</h2>
+</div>
+<div *ngIf="isLoaded">
+  <app-spinner></app-spinner>
+</div>
+<div *ngIf="!isLoaded">
+  <div class="container">
+    <div class="row d-flex justify-content-around">
+      <!-- <div
+        *ngFor="let t of theaters"
+        class="card border-info mb-3"
+        style="max-width: 20rem"
+      >
+        <div class="card-header">{{ t.name }}</div>
+        <div class="card-body">
+          <h4 class="card-title">
+            {{ t?.address?.streetName }}
+            {{ t?.address?.houseNumber }}
+          </h4>
+          <p class="card-text">
+            Some quick example text to build on the card title and make up the
+            bulk of the card's content.
+          </p>
+        </div>
+      </div> -->
+      <div
+        #card
+        *ngFor="let t of theaters"
+        (click)="onCardCLick(t.id)"
+        class="card mb-5"
+        style="width: 18rem"
+      >
+        <img
+          class="card-img-top"
+          src="../../assets/images/khnatob.jpg"
+          alt="Card image cap"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ t.name }}</h5>
+          <p class="card-text">
+            {{ t?.address?.streetName }}
+            {{ t?.address?.houseNumber }}
+          </p>
+          <a class="btn btn-outline-info">Просмотреть представления</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

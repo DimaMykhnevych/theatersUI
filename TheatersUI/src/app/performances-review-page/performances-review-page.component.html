@@ -1,0 +1,39 @@
+<div class="heading mb-5">
+  <h2>Представления театра {{ theaterPerformances[0]?.theater.name }}</h2>
+</div>
+<div *ngIf="isLoading">
+  <app-spinner></app-spinner>
+</div>
+<div *ngIf="!isLoading">
+  <div class="container">
+    <div class="row d-flex justify-content-around">
+      <div
+        *ngFor="let perf of theaterPerformances"
+        (click)="onCardClick(perf.id)"
+        class="card border-info mb-3"
+        style="max-width: 20rem"
+      >
+        <div class="card-header">
+          {{ getGenre(perf.performance.performanceGenre) }}
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">
+            {{ perf.performance.name }}
+          </h4>
+          <p class="card-text">
+            {{
+              perf.performance.author
+                ? "Автор: " + perf.performance.author
+                : ""
+            }}<br />
+            {{
+              perf.performance.composer
+                ? "Композитор: " + perf.performance.composer
+                : ""
+            }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

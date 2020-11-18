@@ -1,0 +1,47 @@
+<section class="container pl-5">
+  <div class="row">
+    <div class="col-lg-6 mb-3" *ngFor="let ticket of ticketsRange">
+      <article class="card">
+        <section class="date">
+          <time datetime="23th feb">
+            <span>{{ performanceDay }}</span
+            ><span>{{ performanceMonth }}</span>
+          </time>
+        </section>
+        <section class="card-cont">
+          <small>{{
+            getGenre(order.theaterPerformance.performance.performanceGenre)
+          }}</small>
+          <h3>{{ order.theaterPerformance.performance.name }}</h3>
+          <div class="even-date">
+            <i class="fa fa-calendar pr-2"></i>
+            <time>
+              <span>{{ performanceDate }}</span>
+              <span>{{ performanceTime }}</span>
+            </time>
+          </div>
+          <div class="even-info">
+            <i class="fa fa-map-marker"></i>
+            <p>{{ order.theaterPerformance.theater.name }} <br /></p>
+
+            <p>
+              {{ order.theaterPerformance.theater.address.streetName }},
+              {{ order.theaterPerformance.theater.address.houseNumber }}
+            </p>
+          </div>
+        </section>
+      </article>
+    </div>
+  </div>
+  <div class="row d-flex mt-3">
+    <div class="col-lg-4 d-flex">
+      <button
+        (click)="onPrintClick()"
+        type="button"
+        class="btn btn-outline-info"
+      >
+        Распечатать
+      </button>
+    </div>
+  </div>
+</section>

@@ -100,11 +100,37 @@ export class TheaterPerformanceService {
     );
   }
 
+  public getActiveTheaterPerformances(): Observable<ITheaterPerformance[]> {
+    return this.http.get<ITheaterPerformance[]>(
+      `${this.apiHost}/theaterPerformance/activeTheaterPerformances`
+    );
+  }
+
+  public getCanceledTheaterPerformances(): Observable<ITheaterPerformance[]> {
+    return this.http.get<ITheaterPerformance[]>(
+      `${this.apiHost}/theaterPerformance/canceledTheaterPerformances`
+    );
+  }
+
+  public getPosponedTheaterPerformances(): Observable<ITheaterPerformance[]> {
+    return this.http.get<ITheaterPerformance[]>(
+      `${this.apiHost}/theaterPerformance/postponedTheaterPerformances`
+    );
+  }
+
   public getTheaterPerformanceById(
     id: number
   ): Observable<ITheaterPerformance> {
     return this.http.get<ITheaterPerformance>(
       `${this.apiHost}/theaterPerformance/${id}`
+    );
+  }
+
+  public getPerformancesByTheaterId(
+    id: number
+  ): Observable<ITheaterPerformance[]> {
+    return this.http.get<ITheaterPerformance[]>(
+      `${this.apiHost}/theaterPerformance/performanceByTheater/${id}`
     );
   }
 

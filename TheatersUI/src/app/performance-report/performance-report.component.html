@@ -1,0 +1,168 @@
+<div class="heading">
+  <h2>Отчет по представлениям</h2>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="row mb-2">
+        <div class="col-lg-6 d-flex align-items-center">
+          <h2 class="table-heading">
+            В прокате
+            <small
+              >(всего
+              {{ activeTheaterPerformances.length }} представления)</small
+            >
+          </h2>
+        </div>
+        <div
+          class="col-lg-3 d-flex justify-content-center align-content-center"
+        >
+          <button
+            (click)="printPage()"
+            type="button"
+            class="btn btn-outline-info m-0"
+          >
+            Распечатать
+          </button>
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr class="table-secondary">
+            <th>Название Театра</th>
+            <th>Название Представления</th>
+            <th>Статус</th>
+            <th>Жанр</th>
+            <th>Цена, грн</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let activeTp of activeTheaterPerformances">
+            <td>{{ activeTp.theater.name }}</td>
+            <td>
+              {{ activeTp.performance.name }}
+            </td>
+            <td>
+              {{ getStatus(activeTp.performance.performanceStatus) }}
+            </td>
+            <td>
+              {{ getGenre(activeTp.performance.performanceGenre) }}
+            </td>
+            <td>
+              {{ activeTp.ticketPrice }}<i class="ml-1 fas fa-hryvnia"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="row mb-2">
+        <div class="col-lg-7 d-flex align-items-center">
+          <h2 class="table-heading">
+            Отмененные
+            <small
+              >(всего
+              {{ canceledTheaterPerformances.length }} представлений)</small
+            >
+          </h2>
+        </div>
+        <div
+          class="col-lg-3 d-flex justify-content-center align-content-center"
+        >
+          <button
+            (click)="printPage()"
+            type="button"
+            class="btn btn-outline-info m-0"
+          >
+            Распечатать
+          </button>
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr class="table-secondary">
+            <th>Название Театра</th>
+            <th>Название Представления</th>
+            <th>Статус</th>
+            <th>Жанр</th>
+            <th>Цена, грн</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let canceledTp of canceledTheaterPerformances">
+            <td>{{ canceledTp.theater.name }}</td>
+            <td>
+              {{ canceledTp.performance.name }}
+            </td>
+            <td>
+              {{ getStatus(canceledTp.performance.performanceStatus) }}
+            </td>
+            <td>
+              {{ getGenre(canceledTp.performance.performanceGenre) }}
+            </td>
+            <td>
+              {{ canceledTp.ticketPrice }}<i class="ml-1 fas fa-hryvnia"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row last-table">
+    <div class="col-lg-12">
+      <div class="row mb-2">
+        <div class="col-lg-7 d-flex align-items-center">
+          <h2 class="table-heading">
+            Перенесенные
+            <small
+              >(всего
+              {{ postponedTheaterPerformances.length }} представления)</small
+            >
+          </h2>
+        </div>
+        <div
+          class="col-lg-3 d-flex justify-content-center align-content-center"
+        >
+          <button
+            (click)="printPage()"
+            type="button"
+            class="btn btn-outline-info m-0"
+          >
+            Распечатать
+          </button>
+        </div>
+      </div>
+      <table class="table">
+        <thead>
+          <tr class="table-secondary">
+            <th>Название Театра</th>
+            <th>Название Представления</th>
+            <th>Статус</th>
+            <th>Жанр</th>
+            <th>Цена, грн</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let postponedTp of postponedTheaterPerformances">
+            <td>{{ postponedTp.theater.name }}</td>
+            <td>
+              {{ postponedTp.performance.name }}
+            </td>
+            <td>
+              {{ getStatus(postponedTp.performance.performanceStatus) }}
+            </td>
+            <td>
+              {{ getGenre(postponedTp.performance.performanceGenre) }}
+            </td>
+            <td>
+              {{ postponedTp.ticketPrice }}<i class="ml-1 fas fa-hryvnia"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
