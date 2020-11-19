@@ -9,6 +9,7 @@ import { NotificationService } from '../services/notification.service';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { IPerformance } from '../models/performance';
+import { VariantService } from '../services/variant.service';
 
 @Component({
   selector: 'app-performance-add-form',
@@ -31,6 +32,7 @@ export class PerformanceAddFormComponent implements OnInit {
 
   constructor(
     private service: PerformanceService,
+    private variantService: VariantService,
     private router: Router,
     private notification: NotificationService,
     private route: ActivatedRoute
@@ -90,6 +92,20 @@ export class PerformanceAddFormComponent implements OnInit {
     } else {
       this.updatePerformance();
     }
+    this.variantService
+      .addVariant({
+        id: 0,
+        questionId: 2,
+        variantText: this.performanceObj.author,
+      })
+      .subscribe((resp) => {});
+    this.variantService
+      .addVariant({
+        id: 0,
+        questionId: 3,
+        variantText: this.performanceObj.composer,
+      })
+      .subscribe((resp) => {});
   }
 
   public updatePerformance(): void {

@@ -24,7 +24,6 @@ export class PerformancesReviewPageComponent implements OnInit {
       let id = theaterId['theaterId'];
       this.service.getPerformancesByTheaterId(id).subscribe((resp) => {
         if (resp) this.isLoading = false;
-        console.log(resp);
         this.theaterPerformances = resp;
       });
     });

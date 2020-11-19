@@ -17,6 +17,7 @@ import { PerformancesReviewPageComponent } from './performances-review-page/perf
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
 import { OrderReviewComponent } from './order-review/order-review.component';
 import { TicketPrintPageComponent } from './ticket-print-page/ticket-print-page.component';
+import { QuizComponent } from './quiz/quiz.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
@@ -49,6 +50,7 @@ const routes: Routes = [
   { path: 'registration', component: UserRegistrationFormComponent },
   { path: 'orderReview', component: OrderReviewComponent },
   { path: 'printTicket', component: TicketPrintPageComponent },
+  { path: 'quiz', component: QuizComponent },
   { path: '**', component: HomeComponent },
 ];
 

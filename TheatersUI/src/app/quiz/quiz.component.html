@@ -1,0 +1,42 @@
+<h1 class="text-center">Опрос</h1>
+<p class="text-center">
+  Пройдя данный опрос, вы сможете первыми узнавать о новых представлениях,
+  которые прийдутся вам по вкусу
+</p>
+<div class="container mt-3">
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-8">
+      <div class="form-group" *ngFor="let q of questions">
+        <label for="variants">{{ q.text }}</label>
+        <select class="form-control" name="variants" id="{{ q.id }}">
+          <option
+            *ngFor="let v of getVariantsByQuestionId(q.id)"
+            value="{{ v.id }}"
+          >
+            {{ v.variantText }}
+          </option>
+        </select>
+      </div>
+    </div>
+  </div>
+  <div class="row d-flex justify-content-center">
+    <div class="col-lg-4 d-flex justify-content-center">
+      <button
+        type="button"
+        class="btn btn-outline-success"
+        (click)="onSendButtonClick()"
+      >
+        Отправить
+      </button>
+    </div>
+    <div class="col-lg-4 d-flex justify-content-center">
+      <button
+        type="button"
+        class="btn btn-outline-warning"
+        (click)="onCancelBtnClick()"
+      >
+        Отменить
+      </button>
+    </div>
+  </div>
+</div>

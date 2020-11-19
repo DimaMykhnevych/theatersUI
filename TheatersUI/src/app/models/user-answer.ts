@@ -5,6 +5,6 @@ export interface IUserAnswer {
   id: number;
   userId: number;
   variantId: number;
-  user: IUser;
-  variant: IVariant;
+  // user: IUser;
+  // variant: IVariant;
 }

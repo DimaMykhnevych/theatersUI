@@ -71,7 +71,8 @@ export class OrderReviewComponent implements OnInit {
       theaterPerformanceId: this.theaterPerformance.id,
       ticketsAmount: parseInt(this.ticketsAmount.value),
     };
-    this.addOrder();
+    // this.showNotific(); //!!!!
+    this.addOrder(); //!!!!
   }
 
   public onTicketAmountInput(amount): void {
@@ -99,7 +100,11 @@ export class OrderReviewComponent implements OnInit {
         'Покупка билетов',
         5000
       );
-      this.router.navigate(['/home']);
+      this.router.navigate(['/quiz'], {
+        queryParams: {
+          userId: this.addedUserId,
+        },
+      });
     });
   }
 }

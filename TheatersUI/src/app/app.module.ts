@@ -36,6 +36,7 @@ import { PerformancesReviewPageComponent } from './performances-review-page/perf
 import { UserRegistrationFormComponent } from './user-registration-form/user-registration-form.component';
 import { OrderReviewComponent } from './order-review/order-review.component';
 import { TicketPrintPageComponent } from './ticket-print-page/ticket-print-page.component';
+import { QuizComponent } from './quiz/quiz.component';
 
 @NgModule({
   declarations: [
@@ -60,6 +61,7 @@ import { TicketPrintPageComponent } from './ticket-print-page/ticket-print-page.
     UserRegistrationFormComponent,
     OrderReviewComponent,
     TicketPrintPageComponent,
+    QuizComponent,
   ],
   imports: [
     BrowserModule,
